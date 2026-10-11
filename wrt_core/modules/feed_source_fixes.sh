@@ -205,6 +205,12 @@ update_mosdns_deconfig() {
         sed -i 's/8000/300/g' "$mosdns_conf"
         sed -i 's/5335/5336/g' "$mosdns_conf"
     fi
+
+    local mosdns_makefile="$(get_custom_feed_worktree_dir)/luci-app-mosdns/Makefile"
+    if [ -f "$mosdns_makefile" ]; then
+        sed -i '/+luci-i18n-mosdns-zh-cn/d' "$mosdns_makefile"
+        echo "已从 luci-app-mosdns Makefile 移除 zh-cn i18n 依赖。"
+    fi
 }
 
 
