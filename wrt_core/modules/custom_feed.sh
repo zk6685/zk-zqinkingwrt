@@ -165,7 +165,7 @@ install_custom_feed() {
         lucky luci-app-lucky luci-app-openclash luci-app-homeproxy luci-app-amlogic \
         oaf open-app-filter luci-app-oaf easytier luci-app-easytier \
         msd_lite luci-app-msd_lite cups luci-app-cupsd \
-        dae daed luci-app-daede \
+        luci-app-daede \
         openlist2 luci-app-openlist2 \
         filebrowser luci-app-filebrowser-go \
         nikki luci-app-nikki \
