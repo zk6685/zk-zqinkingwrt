@@ -71,6 +71,9 @@ jobs:
           sudo -E apt -yqq install clang llvm
           sudo apt-mark manual clang llvm
           which clang && clang --version
+          # Create symlink so OpenWrt build system can find clang at /invalid/clang
+          sudo ln -sf /usr/bin/clang /invalid/clang
+          ls -la /invalid/clang
           sudo -E systemctl daemon-reload
 
       - name: Checkout
