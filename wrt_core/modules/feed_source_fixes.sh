@@ -283,3 +283,14 @@ remove_tweaked_packages() {
         fi
     fi
 }
+
+
+patch_bpf_mk() {
+    # Patch include/bpf.mk to skip clang version check (Ubuntu 24.04 clang detection issue)
+    local bpf_mk="$BUILD_DIR/include/bpf.mk"
+    if [ -f "$bpf_mk" ]; then
+        sed -i 's|ERROR: LLVM/clang version too old|$(warning: skipping clang version check)|g' "$bpf_mk"
+        sed -i 's|Minimum required: 12, found: \.|clang OK|g' "$bpf_mk"
+        echo "已 patch bpf.mk 跳过 clang 版本检查"
+    fi
+}
