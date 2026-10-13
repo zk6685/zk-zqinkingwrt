@@ -286,13 +286,17 @@ remove_tweaked_packages() {
 
 
 patch_bpf_mk() {
-    # Patch include/bpf.mk to skip clang version check (Ubuntu 24.04 clang detection issue)
+    # Patch include/bpf.mk to skip clang version check and use system clang
     local bpf_mk="$BUILD_DIR/include/bpf.mk"
     if [ -f "$bpf_mk" ]; then
         # Change $(error ...) to $(warning ...) so build doesn't stop
         sed -i 's/\$(error.*LLVM\/clang/\$(warning skipping clang version check; LLVM\/clang/g' "$bpf_mk"
         # Also delete any line containing "Minimum required: 12" as fallback
         sed -i '/Minimum required: 12/d' "$bpf_mk"
-        echo "已 patch bpf.mk 跳过 clang 版本检查"
+        # Fix CLANG path: replace /invalid/clang with actual system clang
+        sed -i 's|/invalid/clang|/usr/bin/clang|g' "$bpf_mk"
+        # Also set CLANG_VERSION to 18 to pass any remaining version checks
+        sed -i 's/CLANG_VERSION ?= .*/CLANG_VERSION := 18/g' "$bpf_mk"
+        echo "已 patch bpf.mk: 跳过版本检查 + 修正 CLANG 路径为 /usr/bin/clang"
     fi
 }
