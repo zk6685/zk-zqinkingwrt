@@ -165,7 +165,6 @@ install_custom_feed() {
         lucky luci-app-lucky luci-app-openclash luci-app-homeproxy luci-app-amlogic \
         oaf open-app-filter luci-app-oaf easytier luci-app-easytier \
         msd_lite luci-app-msd_lite cups luci-app-cupsd \
-        luci-app-daede \
         openlist2 luci-app-openlist2 \
         filebrowser luci-app-filebrowser-go \
         nikki luci-app-nikki \
@@ -178,7 +177,7 @@ install_custom_feed() {
         luci-app-passwall nikki luci-app-nikki mihomo-meta
         open-app-filter luci-app-oaf lucky luci-app-lucky luci-app-easytier
         luci-app-emmc-health
-        luci-app-daede luci-app-openlist2 luci-app-filebrowser-go
+        luci-app-openlist2 luci-app-filebrowser-go
         luci-app-gecoosac luci-app-clouddrive2
         luci-theme-argon luci-app-argon-config
     )
